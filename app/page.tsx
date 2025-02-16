@@ -3,6 +3,40 @@
 import { Button } from "@/components/button";
 import { Header } from "@/components/header";
 import { Input } from "@/components/input";
+import { Messages } from "@/components/messages";
+import { IMessage } from "@/interfaces/message.interface";
+
+const messages: IMessage[] = [
+  {
+    id: "1",
+    to: "john_doe",
+    createdDate: "2021-09-01",
+    message:
+      "Please let me know if you change your mind. I told you last week to get out",
+    color: "#f388ff",
+  },
+  {
+    id: "2",
+    to: "john_doe",
+    createdDate: "2021-09-01",
+    message: "Please let me know if you change your mind",
+    color: "#FFD700",
+  },
+  {
+    id: "3",
+    to: "john_doe",
+    createdDate: "2021-09-01",
+    message: "Please let me know if you change your mind",
+    color: "#FFD700",
+  },
+  {
+    id: "4",
+    to: "john_doe",
+    createdDate: "2021-09-01",
+    message: "Please let me know if you change your mind",
+    color: "#FFD700",
+  },
+];
 
 export default function Home() {
   return (
@@ -32,10 +66,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
-          <p className="text-base text-center font-medium text-[#444] dark:text-[#ccc]">
+        <div className="w-full">
+          <p className="text-base text-center font-medium text-[#444] dark:text-[#ccc] mb-6">
             24 messages found
           </p>
+
+          <Messages messages={messages} />
         </div>
       </main>
 
