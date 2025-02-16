@@ -6,5 +6,9 @@ import { Button } from "./button";
 export function ThemeToggle() {
   const { toggleTheme } = useToggleTheme();
 
-  return <Button onClick={toggleTheme}>Switch mode</Button>;
+  return (
+    <Button variant="outlined" onClick={toggleTheme}>
+      Switch mode
+    </Button>
+  );
 }
