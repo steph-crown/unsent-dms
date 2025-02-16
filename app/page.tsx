@@ -1,21 +1,11 @@
 "use client";
 
-import { Button } from "@/components/button";
-import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Header } from "@/components/header";
 
 export default function Home() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
-      <header className="flex items-center container py-5 justify-between">
-        <Logo />
-
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-
-          <Button variant="filled">Send it now</Button>
-        </div>
-      </header>
+    <div className="font-[family-name:var(--font-geist-sans)] relative overflow-x-hidden">
+      <Header />
 
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start"></main>
 
