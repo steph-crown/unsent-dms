@@ -10,8 +10,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "white-bg": "var(--white-bg)",
+        "black-fg": "var(--black-fg)",
+        "black-bg": "var(--black-bg)",
+        "white-fg": "var(--white-fg)",
       },
     },
   },

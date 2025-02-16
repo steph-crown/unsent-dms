@@ -1,3 +1,5 @@
+"use client";
+
 import { useToggleTheme } from "@/hooks/use-toggle-theme";
 import { Button } from "./button";
 

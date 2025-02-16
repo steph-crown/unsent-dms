@@ -4,13 +4,14 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white-bg: #ffffff;
+  --black-fg: #171717;
+  --black-bg: #0a0a0a;
+  --white-fg: #ededed;
 }
 
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,7 +20,11 @@
 } */
 
 body {
-  color: var(--foreground);
+  /* color: var(--foreground); */
   /* background: var(--background); */
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-5;
 }

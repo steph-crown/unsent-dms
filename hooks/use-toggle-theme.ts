@@ -1,15 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function useToggleTheme() {
+export function useToggleTheme(): {
+  toggleTheme: () => void;
+  theme: "dark" | "light";
+} {
+  const [theme, setTheme] = useState<"dark" | "light">(
+    window.localStorage.getItem("theme") as "dark" | "light"
+  );
+
   const makeDark = () => {
+    console.log("fooooooo");
     document.documentElement.classList.add("dark");
     localStorage.setItem("theme", "dark");
+    setTheme("dark");
   };
 
   const makeLight = () => {
+    console.log("foooooookkkk");
+
     document.documentElement.classList.remove("dark");
     localStorage.setItem("theme", "light");
+    setTheme("light");
   };
+
+  console.log({ thethemeeee: theme });
 
   const toggleTheme = () => {
     if (document.documentElement.classList.contains("dark")) makeLight();
@@ -36,9 +50,12 @@ export function useToggleTheme() {
     const theme = localStorage.getItem("theme");
 
     if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+      makeDark();
     }
   }, []);
 
-  return { toggleTheme, theme: localStorage.getItem("theme") };
+  return {
+    toggleTheme,
+    theme,
+  };
 }
