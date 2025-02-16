@@ -7,8 +7,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import classNames from "classnames";
 import { useState } from "react";
 import { CloseIcon } from "./close-icon";
+import { useRouter } from "next/navigation";
 
 export function Header() {
+  const router = useRouter();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   console.log({ isMobileMenuOpen });
@@ -21,7 +24,14 @@ export function Header() {
         <div className="items-center gap-2 hidden md:flex">
           <ThemeToggle />
 
-          <Button variant="filled">Send it now</Button>
+          <Button
+            variant="filled"
+            onClick={() => {
+              router.push("/messages/send");
+            }}
+          >
+            Send it now
+          </Button>
         </div>
 
         <button
@@ -51,7 +61,14 @@ export function Header() {
 
           <ThemeToggle />
 
-          <Button variant="filled">Send it now</Button>
+          <Button
+            variant="filled"
+            onClick={() => {
+              router.push("/messages/send");
+            }}
+          >
+            Send message now
+          </Button>
         </div>
       </div>
     </>

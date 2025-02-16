@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   message: IMessage;
-  shouldScale?: boolean;
+  setMessage?: (message: IMessage) => void;
+  isEditing?: boolean;
 };
 
-export function Message({ message }: Props) {
+export function Message({ message, isEditing }: Props) {
   const router = useRouter();
 
   const formatDate = (date: string) => {
@@ -26,6 +27,7 @@ export function Message({ message }: Props) {
     <div
       className="border-[3px] border-solid border-black-bg dark:border-white-bg w-full py-2 px-4 rounded cursor-pointer "
       onClick={() => {
+        if (isEditing) return;
         router.push(`/messages/${message.id}`);
       }}
     >
@@ -42,7 +44,9 @@ export function Message({ message }: Props) {
         style={{
           background: message.bgColor,
           color: message.fgColor,
+          cursor: isEditing ? "text" : "pointer",
         }}
+        contentEditable={isEditing}
       >
         {message.message}
       </div>
@@ -50,7 +54,9 @@ export function Message({ message }: Props) {
       <div>
         <p className="font-medium">
           Sent on{" "}
-          <span className="font-bold">{formatDate(message.createdDate)}</span>
+          <span className="font-bold">
+            {formatDate(message?.createdDate || new Date().toISOString())}
+          </span>
         </p>
       </div>
     </div>

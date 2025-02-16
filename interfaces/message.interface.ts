@@ -1,7 +1,7 @@
 export interface IMessage {
-  id: string;
+  id?: string;
   to: string;
-  createdDate: string;
+  createdDate?: string;
   message: string;
   bgColor: string;
   fgColor: string;
