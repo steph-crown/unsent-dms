@@ -10,7 +10,7 @@ export function Header() {
 
   return (
     <>
-      <header className="flex items-center container py-5 justify-between">
+      <header className="flex items-center wrapper py-5 justify-between">
         <Logo />
 
         <div className="items-center gap-2 hidden md:flex">
@@ -36,7 +36,7 @@ export function Header() {
           }
         )}
       >
-        <div className="container py-5 flex flex-col gap-4">
+        <div className="wrapper py-5 flex flex-col gap-4">
           <ThemeToggle />
 
           <Button variant="filled">Send it now</Button>
