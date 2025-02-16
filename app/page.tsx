@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/button";
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Input } from "@/components/input";
 import { Messages } from "@/components/messages";
@@ -13,28 +14,32 @@ const messages: IMessage[] = [
     createdDate: "2021-09-01",
     message:
       "Please let me know if you change your mind. I told you last week to get out",
-    color: "#f388ff",
+    bgColor: "#f388ff",
+    fgColor: "#000",
   },
   {
     id: "2",
     to: "john_doe",
     createdDate: "2021-09-01",
     message: "Please let me know if you change your mind",
-    color: "#FFD700",
+    bgColor: "#FFD700",
+    fgColor: "#000",
   },
   {
     id: "3",
     to: "john_doe",
     createdDate: "2021-09-01",
     message: "Please let me know if you change your mind",
-    color: "#FFD700",
+    bgColor: "#000a8a",
+    fgColor: "#fff",
   },
   {
     id: "4",
     to: "john_doe",
     createdDate: "2021-09-01",
     message: "Please let me know if you change your mind",
-    color: "#FFD700",
+    bgColor: "#FFD700",
+    fgColor: "#000",
   },
 ];
 
@@ -43,7 +48,7 @@ export default function Home() {
     <div className="font-[family-name:var(--font-geist-sans)] relative overflow-x-hidden">
       <Header />
 
-      <main className="flex flex-col gap-8 row-start-2 items-center wrapper justify-center mt-10">
+      <main className="flex flex-col gap-8 row-start-2 items-center wrapper justify-center my-10 ">
         <h1 className="text-center text-6xl">
           A Collection of <span className="font-semibold">Unsent DMs</span>
         </h1>
@@ -75,7 +80,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+      <Footer />
     </div>
   );
 }

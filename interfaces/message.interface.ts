@@ -3,5 +3,6 @@ export interface IMessage {
   to: string;
   createdDate: string;
   message: string;
-  color: string;
+  bgColor: string;
+  fgColor: string;
 }

@@ -17,7 +17,7 @@ export function Message({ message }: Props) {
   };
 
   return (
-    <div className="border-[3px] border-solid border-black-bg dark:border-white-bg w-full py-2 px-4 rounded">
+    <div className="border-[3px] border-solid border-black-bg dark:border-white-bg w-full py-2 px-4 rounded ">
       <div className="flex justify-between items-center">
         <p className="text-xl font-medium">
           To: <span className="font-bold">@{message.to}</span>
@@ -29,7 +29,8 @@ export function Message({ message }: Props) {
       <div
         className="my-2 rounded-sm p-4 text-3xl font-medium h-[20rem]"
         style={{
-          background: message.color,
+          background: message.bgColor,
+          color: message.fgColor,
         }}
       >
         {message.message}
