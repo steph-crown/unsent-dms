@@ -1,11 +1,17 @@
+"use client";
+
 import { IMessage } from "@/interfaces/message.interface";
 import { MessageIcon } from "./message-icon";
+import { useRouter } from "next/navigation";
 
 type Props = {
   message: IMessage;
+  shouldScale?: boolean;
 };
 
 export function Message({ message }: Props) {
+  const router = useRouter();
+
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString("en-US", {
       month: "short",
@@ -17,7 +23,12 @@ export function Message({ message }: Props) {
   };
 
   return (
-    <div className="border-[3px] border-solid border-black-bg dark:border-white-bg w-full py-2 px-4 rounded ">
+    <div
+      className="border-[3px] border-solid border-black-bg dark:border-white-bg w-full py-2 px-4 rounded cursor-pointer "
+      onClick={() => {
+        router.push(`/messages/${message.id}`);
+      }}
+    >
       <div className="flex justify-between items-center">
         <p className="text-xl font-medium">
           To: <span className="font-bold">@{message.to}</span>

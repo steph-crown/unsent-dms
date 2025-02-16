@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
 import { Input } from "@/components/input";
 import { Messages } from "@/components/messages";
 import { IMessage } from "@/interfaces/message.interface";
@@ -45,9 +44,8 @@ const messages: IMessage[] = [
 
 export default function Home() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)] relative overflow-x-hidden">
-      <Header />
-
+    // <div className="font-[family-name:var(--font-geist-sans)] relative overflow-x-hidden">
+    <>
       <main className="flex flex-col gap-8 row-start-2 items-center wrapper justify-center my-10 ">
         <h1 className="text-center text-6xl">
           A Collection of <span className="font-semibold">Unsent DMs</span>
@@ -81,6 +79,7 @@ export default function Home() {
       </main>
 
       <Footer />
-    </div>
+    </>
+    // </div>
   );
 }

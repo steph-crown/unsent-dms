@@ -15,7 +15,7 @@ export function Button({ children, variant, className, ...rest }: Props) {
         variant === "filled" &&
           "bg-black-bg text-white-fg dark:bg-white-bg dark:text-black-fg",
         variant === "outlined" &&
-          "border border-black-bg text-black-bg dark:border-white-bg dark:text-white-bg"
+          "border-[1.5px] border-black-bg text-black-bg dark:border-white-bg dark:text-white-bg"
       )}
       {...rest}
     >
