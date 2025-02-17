@@ -7,6 +7,7 @@ import { Message } from "@/components/message";
 import { SendIcon } from "@/components/send-icon";
 import { API_URL } from "@/constants/api.constant";
 import { IMessage } from "@/interfaces/message.interface";
+import { isValidTwitterUsername } from "@/utils/is-valid-twitter-username";
 import { showToast } from "@/utils/ui/toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -39,6 +40,15 @@ export default function Page() {
         type: "error",
         text1: "Error",
         text2: "Please enter a message to proceed",
+      });
+      return;
+    }
+
+    if (!isValidTwitterUsername(message.to)) {
+      showToast({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter a valid Twitter username",
       });
       return;
     }

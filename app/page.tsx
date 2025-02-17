@@ -6,48 +6,19 @@ import { Input } from "@/components/input";
 import { Messages } from "@/components/messages";
 import { useGetMessages } from "@/hooks/use-get-messages";
 import { useQueryParams } from "@/hooks/use-query-params";
-import { useState } from "react";
-
-// const messages: IMessage[] = [
-//   {
-//     id: "1",
-//     to: "john_doe",
-//     createdDate: "2021-09-01",
-//     message:
-//       "Please let me know if you change your mind. I told you last week to get out",
-//     bgColor: "#f388ff",
-//     fgColor: "#000",
-//   },
-//   {
-//     id: "2",
-//     to: "john_doe",
-//     createdDate: "2021-09-01",
-//     message: "Please let me know if you change your mind",
-//     bgColor: "#FFD700",
-//     fgColor: "#000",
-//   },
-//   {
-//     id: "3",
-//     to: "john_doe",
-//     createdDate: "2021-09-01",
-//     message: "Please let me know if you change your mind",
-//     bgColor: "#000a8a",
-//     fgColor: "#fff",
-//   },
-//   {
-//     id: "4",
-//     to: "john_doe",
-//     createdDate: "2021-09-01",
-//     message: "Please let me know if you change your mind",
-//     bgColor: "#FFD700",
-//     fgColor: "#000",
-//   },
-// ];
+import { isValidTwitterUsername } from "@/utils/is-valid-twitter-username";
+import { showToast } from "@/utils/ui/toast";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { addQuery, getQuery } = useQueryParams();
+  const toQuery = getQuery("to") || "";
 
-  const [twitterUsername, setTwitterUsername] = useState(getQuery("to") || "");
+  const [twitterUsername, setTwitterUsername] = useState("");
+
+  useEffect(() => {
+    setTwitterUsername(toQuery || "");
+  }, [toQuery]);
 
   const {
     getMessages,
@@ -56,12 +27,23 @@ export default function Home() {
     messages,
     isFetching,
     count,
-  } = useGetMessages(twitterUsername);
+  } = useGetMessages();
 
-  const onSearch = () => {
+  const onSearch = (ev: any) => {
+    ev.preventDefault();
+    if (!isValidTwitterUsername(twitterUsername)) {
+      showToast({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter a valid Twitter username",
+      });
+      return;
+    }
+
     resetMessages();
     // getMessages();
     addQuery("to", twitterUsername);
+    // getMessages(undefined, twitterUsername);
     getMessages();
   };
 
@@ -97,7 +79,7 @@ export default function Home() {
             Find messages addressed to you or someone you know.
           </p>
 
-          <div className="flex items-center gap-4">
+          <form className="flex items-center gap-4" onSubmit={onSearch}>
             <Input
               prefixNode={<p>@</p>}
               placeholder="Enter a Twitter username"
@@ -107,16 +89,18 @@ export default function Home() {
               }}
             />
 
-            <Button variant="filled" onClick={onSearch}>
+            <Button type="submit" variant="filled">
               Search
             </Button>
-          </div>
+          </form>
         </div>
 
         <div className="w-full">
-          <p className="text-base text-center font-medium text-[#444] dark:text-[#ccc] mb-6">
-            {count} messages found
-          </p>
+          {!isFetching && (
+            <p className="text-base text-center font-medium text-[#444] dark:text-[#ccc] mb-6">
+              {count} messages found
+            </p>
+          )}
 
           <Messages messages={messages} isFetching={isFetching} />
         </div>

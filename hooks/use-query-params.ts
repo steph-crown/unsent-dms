@@ -5,7 +5,7 @@ export function useQueryParams() {
   const searchParams = useSearchParams();
 
   const addQuery = (key: string, value: string) => {
-    router.push(`/messages?${key}=${value}`);
+    router.push(`/?${key}=${value}`);
   };
 
   const getQuery = (key: string) => {

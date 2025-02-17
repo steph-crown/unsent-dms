@@ -1,7 +1,8 @@
 import classNames from "classnames";
+import { ReactNode } from "react";
 
 type Props = {
-  prefixNode?: any;
+  prefixNode?: ReactNode;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export function Input({ className, prefixNode, ...rest }: Props) {

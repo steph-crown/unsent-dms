@@ -1,22 +1,30 @@
 import { API_URL } from "@/constants/api.constant";
 import { IMessage } from "@/interfaces/message.interface";
 import { useEffect, useMemo, useState } from "react";
+import { useQueryParams } from "./use-query-params";
 
-export function useGetMessages(to: string) {
+export function useGetMessages() {
   const limit = 20;
   const [isFetching, setIsFetching] = useState(false);
   const [offset, setOffset] = useState(0);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [count, setCount] = useState(0);
+  const { getQuery } = useQueryParams();
+
+  useEffect(() => {
+    getMessages();
+  }, [getQuery("to")]);
 
   const getMessages = async (localOffset?: number) => {
-    const toQuery = to ? `to=${to}` : "";
+    const toQueryFromUrl = getQuery("to") || "";
+
+    const toQuery = toQueryFromUrl ? `to=${toQueryFromUrl}&` : "";
     console.log({ ieieeieiei: offset });
 
     try {
       setIsFetching(true);
       const response = await fetch(
-        `${API_URL}/messages?${toQuery}&limit=${limit}&offset=${
+        `${API_URL}/messages?${toQuery}limit=${limit}&offset=${
           localOffset || offset
         }`,
         {
@@ -30,7 +38,11 @@ export function useGetMessages(to: string) {
       if (response.status >= 200 && response.status <= 299) {
         const data = await response.json();
         console.log({ datayii: data });
-        setMessages([...(messages || []), ...(data?.data?.messages || [])]);
+        setMessages(
+          (localOffset || offset) === 0
+            ? data?.data?.messages
+            : [...(messages || []), ...(data?.data?.messages || [])]
+        );
         setCount(data?.data?.total);
       }
     } catch (err) {
