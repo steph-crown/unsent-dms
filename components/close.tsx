@@ -1,4 +1,4 @@
-import { ISvg } from '../interfaces/icon/svg.interface'
+import { ISvg } from "@/interfaces/svg.interface";
 
 export function Close(props: ISvg) {
   return (
@@ -25,5 +25,5 @@ export function Close(props: ISvg) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }

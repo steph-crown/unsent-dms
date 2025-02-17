@@ -1,4 +1,4 @@
-import { ISvg } from '../interfaces/icon/svg.interface'
+import { ISvg } from "@/interfaces/svg.interface";
 
 export function SquareInfo({ ...props }: ISvg) {
   return (
@@ -34,5 +34,5 @@ export function SquareInfo({ ...props }: ISvg) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
