@@ -37,7 +37,7 @@ export function Header() {
         </div>
 
         <button
-          className="block md:hidden"
+          className="block md:hidden animate-bounce"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
           <Hamburger />
