@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 
 export function useToggleTheme(): {
   toggleTheme: () => void;
-  theme: "dark" | "light";
+  theme: "dark" | "light" | undefined;
 } {
-  const [theme, setTheme] = useState<"dark" | "light">(
-    window.localStorage.getItem("theme") as "dark" | "light"
-  );
+  const [theme, setTheme] = useState<"dark" | "light" | undefined>(undefined);
+
+  useEffect(() => {
+    setTheme(
+      typeof window !== "undefined"
+        ? (localStorage.getItem("theme") as "dark" | "light")
+        : "dark"
+    );
+  }, []);
 
   const makeDark = () => {
     console.log("fooooooo");
@@ -31,19 +37,21 @@ export function useToggleTheme(): {
   };
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
+    if (typeof window !== "undefined") {
+      const theme = localStorage.getItem("theme");
 
-    if (theme === "dark") makeDark();
-    else makeLight();
+      if (theme === "dark") makeDark();
+      else makeLight();
 
-    if (theme) return;
+      if (theme) return;
 
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+      const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
-    if (prefersDarkMode) makeDark();
-    else makeLight();
+      if (prefersDarkMode) makeDark();
+      else makeLight();
+    }
   }, []);
 
   useEffect(() => {
