@@ -71,7 +71,7 @@ export function Message({ message, isEditing, onChange }: Props) {
         <p className="font-medium">
           Sent on{" "}
           <span className="font-bold">
-            {formatDate(message?.createdDate || new Date().toISOString())}
+            {formatDate(message?.createdAt || new Date().toISOString())}
           </span>
         </p>
       </div>
