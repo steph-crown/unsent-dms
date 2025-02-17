@@ -99,6 +99,7 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <Input
+              prefixNode={<p>@</p>}
               placeholder="Enter a Twitter username"
               value={twitterUsername}
               onChange={(ev) => {

@@ -96,6 +96,7 @@ export default function Page() {
           </p>
 
           <Input
+            prefixNode={<p>@</p>}
             placeholder="Enter Twitter username"
             onChange={(ev) => {
               setMessage((prev) => ({
@@ -112,14 +113,7 @@ export default function Page() {
               message={message}
               setMessage={setMessage}
               isEditing={true}
-              // onChange={(ev) => {
-              //   setMessage((prev) => ({
-              //     ...prev,
-              //     message: ev.target.value,
-              //   }));
-              // }}
               onChange={handleMessage}
-              // onInput={handleInput}
             />
 
             <Button
