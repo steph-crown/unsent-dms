@@ -64,7 +64,7 @@ export default function Home() {
       className="h-[calc(100vh_-_6.25rem)] overflow-y-auto body-scroll"
       onScroll={handleScroll}
     >
-      <main className="flex flex-col gap-4 md:gap-8 row-start-2 items-center wrapper justify-center my-10 ">
+      <main className="flex flex-col gap-4 min-h-[80vh] md:gap-8 row-start-2 items-center wrapper justify-start my-10 ">
         <h1 className="text-center text-[2rem] md:text-6xl">
           A Collection of <span className="font-semibold">Unsent DMs</span>
         </h1>

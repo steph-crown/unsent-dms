@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="w-full  wrapper">
-      <div className="border-t border-solid border-[#EEE] dark:border-[#555] py-6 flex items-center justify-between">
+      <div className="border-t border-solid border-[#EEE] dark:border-[#555] py-6 flex flex-col md:flex-row items-center justify-between">
         <p className="text-sm font-medium">
           Inspired by{" "}
           <a
