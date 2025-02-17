@@ -13,6 +13,9 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Unsent DMs",
   description: "A collection of unsent DMs",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
