@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { ToastProvider } from "@/providers/toast.provider";
 import { Suspense } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,8 @@ export default function RootLayout({
           </Suspense>
         </ToastProvider>
       </body>
+
+      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />
     </html>
   );
 }
