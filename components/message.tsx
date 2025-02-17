@@ -51,6 +51,7 @@ export function Message({ message, isEditing, onChange }: Props) {
           }}
           value={message.message}
           onChange={onChange}
+          placeholder="Type message here ..."
         />
       ) : (
         <div
