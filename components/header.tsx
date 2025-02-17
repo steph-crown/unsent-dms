@@ -5,9 +5,10 @@ import { Hamburger } from "@/components/hamburger";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import classNames from "classnames";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CloseIcon } from "./close-icon";
-import { useRouter } from "next/navigation";
+import { SendIcon } from "./send-icon";
 
 export function Header() {
   const router = useRouter();
@@ -30,7 +31,8 @@ export function Header() {
               router.push("/messages/send");
             }}
           >
-            Send it now
+            <SendIcon />
+            Send message now
           </Button>
         </div>
 
@@ -67,6 +69,7 @@ export function Header() {
               router.push("/messages/send");
             }}
           >
+            <SendIcon />
             Send message now
           </Button>
         </div>

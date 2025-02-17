@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { ColorPicker } from "@/components/color-picker";
 import { Input } from "@/components/input";
 import { Message } from "@/components/message";
+import { SendIcon } from "@/components/send-icon";
 import { API_URL } from "@/constants/api.constant";
 import { IMessage } from "@/interfaces/message.interface";
 import { showToast } from "@/utils/ui/toast";
@@ -128,6 +129,7 @@ export default function Page() {
               disabled={isLoading}
               isLoading={isLoading}
             >
+              <SendIcon />
               Send message
             </Button>
           </div>

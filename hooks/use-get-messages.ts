@@ -3,7 +3,7 @@ import { IMessage } from "@/interfaces/message.interface";
 import { useEffect, useMemo, useState } from "react";
 
 export function useGetMessages(to: string) {
-  const limit = 5;
+  const limit = 20;
   const [isFetching, setIsFetching] = useState(false);
   const [offset, setOffset] = useState(0);
   const [messages, setMessages] = useState<IMessage[]>([]);
