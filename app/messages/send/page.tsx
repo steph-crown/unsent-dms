@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { ColorPicker } from "@/components/color-picker";
 import { Input } from "@/components/input";
 import { Message } from "@/components/message";
+import { API_URL } from "@/constants/api.constant";
 import { IMessage } from "@/interfaces/message.interface";
 import { useState } from "react";
 
@@ -16,6 +17,56 @@ const defaultMessage: IMessage = {
 
 export default function Page() {
   const [message, setMessage] = useState<IMessage>(defaultMessage);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async () => {
+    console.log({ message });
+    if (!message.to) {
+      alert("Please enter a Twitter username");
+      return;
+    }
+
+    if (!message.message) {
+      alert("Please enter a message");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const response = await fetch(`${API_URL}/messages`, {
+        method: "POST",
+        body: JSON.stringify(message),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log({ theresponse: response });
+
+      if (response.status >= 200 && response.status <= 299) {
+      }
+    } catch (err) {
+      console.log("err", err);
+      alert("An error occured, please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const maxLength = 200; // Set your max length
+
+  const handleMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length > maxLength) {
+      alert(`Max length is ${maxLength}`);
+      e.preventDefault();
+    } else {
+      setMessage((prev) => ({
+        ...prev,
+        message: e.target.value,
+      }));
+    }
+  };
 
   return (
     <div>
@@ -42,9 +93,23 @@ export default function Page() {
               message={message}
               setMessage={setMessage}
               isEditing={true}
+              // onChange={(ev) => {
+              //   setMessage((prev) => ({
+              //     ...prev,
+              //     message: ev.target.value,
+              //   }));
+              // }}
+              onChange={handleMessage}
+              // onInput={handleInput}
             />
 
-            <Button variant="filled" className="mt-5 w-full text-lg">
+            <Button
+              variant="filled"
+              className="mt-5 w-full text-lg"
+              onClick={onSubmit}
+              disabled={isLoading}
+              isLoading={isLoading}
+            >
               Send message
             </Button>
           </div>

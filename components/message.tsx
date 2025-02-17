@@ -3,14 +3,16 @@
 import { IMessage } from "@/interfaces/message.interface";
 import { MessageIcon } from "./message-icon";
 import { useRouter } from "next/navigation";
+import { ChangeEventHandler } from "react";
 
 type Props = {
   message: IMessage;
   setMessage?: (message: IMessage) => void;
   isEditing?: boolean;
+  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export function Message({ message, isEditing }: Props) {
+export function Message({ message, isEditing, onChange }: Props) {
   const router = useRouter();
 
   const formatDate = (date: string) => {
@@ -39,17 +41,31 @@ export function Message({ message, isEditing }: Props) {
         <MessageIcon />
       </div>
 
-      <div
-        className="my-2 rounded-sm p-4 text-3xl font-medium h-[20rem]"
-        style={{
-          background: message.bgColor,
-          color: message.fgColor,
-          cursor: isEditing ? "text" : "pointer",
-        }}
-        contentEditable={isEditing}
-      >
-        {message.message}
-      </div>
+      {isEditing ? (
+        <textarea
+          className="my-2 rounded-sm p-4 text-3xl font-medium min-h-[20rem] w-full outline-none border-none"
+          style={{
+            background: message.bgColor,
+            color: message.fgColor,
+            cursor: isEditing ? "text" : "pointer",
+          }}
+          value={message.message}
+          onChange={onChange}
+        />
+      ) : (
+        <div
+          className="my-2 rounded-sm p-4 text-3xl font-medium min-h-[20rem]"
+          style={{
+            background: message.bgColor,
+            color: message.fgColor,
+            cursor: isEditing ? "text" : "pointer",
+          }}
+          // contentEditable={isEditing}
+          // onInput={onInput}
+        >
+          {message.message}
+        </div>
+      )}
 
       <div>
         <p className="font-medium">
