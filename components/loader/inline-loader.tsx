@@ -1,13 +1,25 @@
-import classNames from 'classnames'
-import './loader.css'
+import classNames from "classnames";
+import "./loader.css";
 
 type Props = {
-  size?: 'small' | 'medium' | 'large'
-  color?: string
-}
+  size?: "small" | "medium" | "large";
+  color?: string;
+  autoMode?: boolean;
+};
 
-export function InlineLoader({ color = 'white', size = 'small' }: Props) {
+export function InlineLoader({
+  autoMode,
+  color = "white",
+  size = "small",
+}: Props) {
   return (
-    <span className={classNames('inline-loader', size === 'small' && 'h-4 w-4')} style={{ borderColor: color }}></span>
-  )
+    <span
+      className={classNames(
+        "inline-loader",
+        size === "small" && "h-4 w-4",
+        autoMode && "!border-black-bg dark:!border-white-bg"
+      )}
+      style={{ borderColor: color }}
+    ></span>
+  );
 }

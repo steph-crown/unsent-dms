@@ -20,7 +20,7 @@ export const showToast = (params: ToastParams) => {
     {
       type: params.type,
       position: "top-right",
-      autoClose: 30000,
+      autoClose: 3000,
     }
   );
 };
