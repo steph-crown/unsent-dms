@@ -6,6 +6,8 @@ import { Input } from "@/components/input";
 import { Message } from "@/components/message";
 import { API_URL } from "@/constants/api.constant";
 import { IMessage } from "@/interfaces/message.interface";
+import { showToast } from "@/utils/ui/toast";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const defaultMessage: IMessage = {
@@ -18,16 +20,25 @@ const defaultMessage: IMessage = {
 export default function Page() {
   const [message, setMessage] = useState<IMessage>(defaultMessage);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async () => {
     console.log({ message });
     if (!message.to) {
-      alert("Please enter a Twitter username");
+      showToast({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter a Twitter username to proceed",
+      });
       return;
     }
 
     if (!message.message) {
-      alert("Please enter a message");
+      showToast({
+        type: "error",
+        text1: "Error",
+        text2: "Please enter a message to proceed",
+      });
       return;
     }
 
@@ -45,6 +56,13 @@ export default function Page() {
       console.log({ theresponse: response });
 
       if (response.status >= 200 && response.status <= 299) {
+        showToast({
+          type: "success",
+          text1: "Success",
+          text2: "Message successfully posted",
+        });
+
+        router.push("/");
       }
     } catch (err) {
       console.log("err", err);
