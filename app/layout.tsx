@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { ToastProvider } from "@/providers/toast.provider";
 import { Suspense } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { InlineLoader } from "@/components/loader/inline-loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,14 @@ export default function RootLayout({
         className={`${geistSans.variable} antialiased bg-white-bg dark:bg-black-bg text-black-fg dark:text-white-fg`}
       >
         <ToastProvider>
-          <Suspense fallback={<>Loading...</>}>
+          <Suspense
+            fallback={
+              <div className="flex w-full justify-center gap-3">
+                <InlineLoader autoMode />
+                <p className="text-sm font-semibold">Loading</p>
+              </div>
+            }
+          >
             <div className="font-[family-name:var(--font-geist-sans)] relative overflow-x-hidden">
               <Header />
 
