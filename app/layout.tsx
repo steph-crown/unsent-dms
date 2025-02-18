@@ -33,7 +33,7 @@ export default function RootLayout({
         <ToastProvider>
           <Suspense
             fallback={
-              <div className="flex w-full justify-center gap-3">
+              <div className="flex w-full justify-center gap-3 mt-20">
                 <InlineLoader autoMode />
                 <p className="text-sm font-semibold">Loading</p>
               </div>
